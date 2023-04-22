@@ -4,7 +4,7 @@
   :eyes: An application with VK authorization to view a photo album
 ## *Application decomposition:*
 - [X] 1.integration VK SDK *70min* 
-  - [X] 1.1.VK SDK and User Authorization *40min*
+  - [ ] 1.1.VK SDK and User Authorization *40min*
      - [ ] 1.2.Fetch Json *30min*
 - [ ] 4.Layuot *2-3hours*
 - [ ] 5.Adding cell filling logic *50min*
