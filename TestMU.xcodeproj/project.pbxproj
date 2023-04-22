@@ -14,6 +14,8 @@
 		5C9FEB6E29F3EF440069C008 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C9FEB6C29F3EF440069C008 /* LaunchScreen.storyboard */; };
 		5C9FEB7729F3F1D40069C008 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9FEB7629F3F1D40069C008 /* AuthService.swift */; };
 		5C9FEB7A29F3F3A70069C008 /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C9FEB7929F3F3A70069C008 /* SFProText-Bold.ttf */; };
+		5C9FEB7E29F45D540069C008 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9FEB7D29F45D540069C008 /* GalleryViewController.swift */; };
+		5C9FEB8029F461E00069C008 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9FEB7F29F461E00069C008 /* PhotoCell.swift */; };
 		EA37214094168DAA6A2F556C /* Pods_TestMU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B07934AEE1E1977269E82E40 /* Pods_TestMU.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,8 @@
 		5C9FEB6F29F3EF440069C008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C9FEB7629F3F1D40069C008 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		5C9FEB7929F3F3A70069C008 /* SFProText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProText-Bold.ttf"; path = "../../../San Francisco Pro Text/SFProText-Bold.ttf"; sourceTree = "<group>"; };
+		5C9FEB7D29F45D540069C008 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		5C9FEB7F29F461E00069C008 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		6D729EF5D5456AA234FFE636 /* Pods-TestMU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMU.release.xcconfig"; path = "Target Support Files/Pods-TestMU/Pods-TestMU.release.xcconfig"; sourceTree = "<group>"; };
 		B07934AEE1E1977269E82E40 /* Pods_TestMU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestMU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -78,6 +82,8 @@
 				5C9FEB6129F3EF440069C008 /* AppDelegate.swift */,
 				5C9FEB6329F3EF440069C008 /* SceneDelegate.swift */,
 				5C9FEB6529F3EF440069C008 /* StartViewController.swift */,
+				5C9FEB7F29F461E00069C008 /* PhotoCell.swift */,
+				5C9FEB7D29F45D540069C008 /* GalleryViewController.swift */,
 				5C9FEB7529F3F1250069C008 /* Services */,
 				5C9FEB6A29F3EF440069C008 /* Assets.xcassets */,
 				5C9FEB6C29F3EF440069C008 /* LaunchScreen.storyboard */,
@@ -226,8 +232,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C9FEB6629F3EF440069C008 /* StartViewController.swift in Sources */,
+				5C9FEB7E29F45D540069C008 /* GalleryViewController.swift in Sources */,
 				5C9FEB6229F3EF440069C008 /* AppDelegate.swift in Sources */,
 				5C9FEB6429F3EF440069C008 /* SceneDelegate.swift in Sources */,
+				5C9FEB8029F461E00069C008 /* PhotoCell.swift in Sources */,
 				5C9FEB7729F3F1D40069C008 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
