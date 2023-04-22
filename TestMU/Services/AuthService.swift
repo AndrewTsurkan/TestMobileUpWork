@@ -8,7 +8,13 @@
 import Foundation
 import VK_ios_sdk
 
-class AuthService:  NSObject, VKSdkDelegate, VKSdkUIDelegate {
+protocol AuthSetviceDelegete: AnyObject {
+    func authServiceShouldShow(viewController: UIViewController)
+    func authServiceSingIn()
+    func authServiceSingInDidFail()
+}
+
+class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     
     private let appId = "51621340"
     private let vkSdk: VKSdk
@@ -20,18 +26,38 @@ class AuthService:  NSObject, VKSdkDelegate, VKSdkUIDelegate {
         vkSdk.register(self)
         vkSdk.uiDelegate = self
     }
+    weak var delagate: AuthSetviceDelegete?
+    
+    func wakeUpSession() {
+        let scope = ["offline"]
+        VKSdk.wakeUpSession(scope) { state, error in
+            switch state {
+            case .initialized:
+                print("initialized")
+                VKSdk.authorize(scope)
+            case .authorized:
+                print("authorized")
+            default:
+                fatalError(error!.localizedDescription)
+            }
+        }
+    }
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
         print(#function)
+        if result.token != nil {
+            delagate?.authServiceSingIn()
+        }
     }
     
     func vkSdkUserAuthorizationFailed() {
         print(#function)
+        delagate?.authServiceSingInDidFail()
 
     }
     
     func vkSdkShouldPresent(_ controller: UIViewController!) {
         print(#function)
-
+        delagate?.authServiceShouldShow(viewController: controller)
     }
     
     func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {

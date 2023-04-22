@@ -8,7 +8,7 @@
 import UIKit
 
 class StartViewController: UIViewController {
-    
+    private var authService: AuthService!
     private let haederLabel = UILabel()
     private let enterButton = UIButton()
     private var screenHeight: CGFloat {
@@ -23,6 +23,7 @@ class StartViewController: UIViewController {
         setupHaederLabel()
         setupEnterButton()
         view.backgroundColor = .white
+        authService = SceneDelegate.shared().authService
     }
     
     private func setupHaederLabel() {
@@ -46,11 +47,15 @@ class StartViewController: UIViewController {
         enterButton.titleLabel?.font = UIFont(name: "SFProText-Bold", size: 15)
         enterButton.backgroundColor = .black
         enterButton.layer.cornerRadius = 12
+        enterButton.addTarget(self, action: #selector(actionEnterButton), for: .touchUpInside)
         
         [enterButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
          enterButton.heightAnchor.constraint(equalToConstant: 52),
          enterButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
          enterButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16)].forEach{ $0.isActive = true }
+    }
+    @objc func actionEnterButton() {
+        authService.wakeUpSession()
     }
 
 }

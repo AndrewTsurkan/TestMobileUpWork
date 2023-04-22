@@ -8,11 +8,16 @@
 import UIKit
 import VK_ios_sdk
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthSetviceDelegete {
 
-    var window: UIWindow?
+     var window: UIWindow?
     var authService: AuthService!
 
+    static func shared() -> SceneDelegate {
+        let scene = UIApplication.shared.connectedScenes.first
+        let sd:SceneDelegate = (((scene?.delegate as? SceneDelegate)!))
+        return sd
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -21,7 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         authService = AuthService()
-        window.rootViewController = UINavigationController(rootViewController: StartViewController())
+        authService.delagate = self
+        window.rootViewController = StartViewController()
         window.makeKeyAndVisible()
         self.window = window
     }
@@ -58,7 +64,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
+    func authServiceShouldShow(viewController: UIViewController) {
+        print(#function)
+        window?.rootViewController?.present(viewController, animated: true)
+    }
+    
+    func authServiceSingIn() {
+        print(#function)
+    }
+    
+    func authServiceSingInDidFail() {
+        print(#function)
+    }
 
 }
 
