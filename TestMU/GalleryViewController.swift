@@ -10,12 +10,12 @@ import UIKit
 class GalleryViewController: UIViewController {
     
 //    var collectionView = UICollectionView()
-    
+    private let networkService = NetworkSevice()
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "MobileUp Gallery"
         view.backgroundColor = .blue
-        
+        networkService.getPhotos()
 //        setupCollectionView()
 //        setupFlowLayout()
     }

@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthSetviceDelegete {
         let window = UIWindow(windowScene: windowScene)
         authService = AuthService()
         authService.delagate = self
-        window.rootViewController = UINavigationController(rootViewController: StartViewController())
+        window.rootViewController = StartViewController()
         window.makeKeyAndVisible()
         self.window = window
     }

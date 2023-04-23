@@ -28,6 +28,10 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     }
     weak var delagate: AuthSetviceDelegete?
     
+    var token:String? {
+        return VKSdk.accessToken().accessToken
+    }
+    
     func wakeUpSession() {
         let scope = ["offline"]
         VKSdk.wakeUpSession(scope) { [delagate] state, error in
