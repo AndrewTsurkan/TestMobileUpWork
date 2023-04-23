@@ -33,6 +33,7 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func wakeUpSession() {
+
         let scope = ["offline"]
         VKSdk.wakeUpSession(scope) { [delagate] state, error in
             switch state {

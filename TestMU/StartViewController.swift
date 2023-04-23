@@ -32,6 +32,7 @@ class StartViewController: UIViewController {
         
         haederLabel.text = "Mobile\u{00A0}Up Gallery"
         haederLabel.font = UIFont(name: "SFProText-Bold", size: 44)
+
         haederLabel.numberOfLines = 2
         
         [haederLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: screenHeight/4),

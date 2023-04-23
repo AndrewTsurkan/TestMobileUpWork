@@ -31,7 +31,6 @@ final class NetworkSevice: Networking {
         let request = URLRequest(url: url)
         let task = createDataTask(from: request, completion: completion)
         task.resume()
-        print(url)
     }
 private func createDataTask(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask {
         return URLSession.shared.dataTask(with: request) { data, response, error  in
