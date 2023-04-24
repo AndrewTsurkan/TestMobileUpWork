@@ -13,13 +13,13 @@
 		5C9FEB6B29F3EF440069C008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C9FEB6A29F3EF440069C008 /* Assets.xcassets */; };
 		5C9FEB6E29F3EF440069C008 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C9FEB6C29F3EF440069C008 /* LaunchScreen.storyboard */; };
 		5C9FEB7729F3F1D40069C008 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9FEB7629F3F1D40069C008 /* AuthService.swift */; };
-		5C9FEB7A29F3F3A70069C008 /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C9FEB7929F3F3A70069C008 /* SFProText-Bold.ttf */; };
 		5C9FEB7E29F45D540069C008 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9FEB7D29F45D540069C008 /* GalleryViewController.swift */; };
 		5C9FEB8029F461E00069C008 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9FEB7F29F461E00069C008 /* PhotoCell.swift */; };
 		5CEEFC4129F49775004EBA90 /* NetworkSevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4029F49775004EBA90 /* NetworkSevice.swift */; };
 		5CEEFC4329F49888004EBA90 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4229F49888004EBA90 /* API.swift */; };
 		5CEEFC4629F52E96004EBA90 /* PhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4529F52E96004EBA90 /* PhotoResponse.swift */; };
 		5CEEFC4829F5A49C004EBA90 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4729F5A49C004EBA90 /* NetworkDataFetcher.swift */; };
+		5CEEFC4A29F5E632004EBA90 /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4929F5E632004EBA90 /* SFProText-Bold.ttf */; };
 		EA37214094168DAA6A2F556C /* Pods_TestMU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B07934AEE1E1977269E82E40 /* Pods_TestMU.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,13 +33,13 @@
 		5C9FEB6D29F3EF440069C008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C9FEB6F29F3EF440069C008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C9FEB7629F3F1D40069C008 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		5C9FEB7929F3F3A70069C008 /* SFProText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProText-Bold.ttf"; path = "../../../San Francisco Pro Text/SFProText-Bold.ttf"; sourceTree = "<group>"; };
 		5C9FEB7D29F45D540069C008 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		5C9FEB7F29F461E00069C008 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		5CEEFC4029F49775004EBA90 /* NetworkSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSevice.swift; sourceTree = "<group>"; };
 		5CEEFC4229F49888004EBA90 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5CEEFC4529F52E96004EBA90 /* PhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoResponse.swift; sourceTree = "<group>"; };
 		5CEEFC4729F5A49C004EBA90 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
+		5CEEFC4929F5E632004EBA90 /* SFProText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Bold.ttf"; sourceTree = "<group>"; };
 		6D729EF5D5456AA234FFE636 /* Pods-TestMU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMU.release.xcconfig"; path = "Target Support Files/Pods-TestMU/Pods-TestMU.release.xcconfig"; sourceTree = "<group>"; };
 		B07934AEE1E1977269E82E40 /* Pods_TestMU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestMU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -86,7 +86,7 @@
 		5C9FEB6029F3EF440069C008 /* TestMU */ = {
 			isa = PBXGroup;
 			children = (
-				5C9FEB7829F3F3850069C008 /* Fond */,
+				5C9FEB7829F3F3850069C008 /* Font */,
 				5C9FEB6129F3EF440069C008 /* AppDelegate.swift */,
 				5C9FEB6329F3EF440069C008 /* SceneDelegate.swift */,
 				5C9FEB6529F3EF440069C008 /* StartViewController.swift */,
@@ -112,13 +112,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		5C9FEB7829F3F3850069C008 /* Fond */ = {
+		5C9FEB7829F3F3850069C008 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				5C9FEB7929F3F3A70069C008 /* SFProText-Bold.ttf */,
+				5CEEFC4929F5E632004EBA90 /* SFProText-Bold.ttf */,
 			);
-			path = Fond;
+			path = Font;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		5CEEFC4429F52E6E004EBA90 /* Models */ = {
 			isa = PBXGroup;
@@ -197,7 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C9FEB6E29F3EF440069C008 /* LaunchScreen.storyboard in Resources */,
-				5C9FEB7A29F3F3A70069C008 /* SFProText-Bold.ttf in Resources */,
+				5CEEFC4A29F5E632004EBA90 /* SFProText-Bold.ttf in Resources */,
 				5C9FEB6B29F3EF440069C008 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
