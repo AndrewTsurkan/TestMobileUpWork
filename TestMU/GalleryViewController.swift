@@ -9,8 +9,8 @@ import UIKit
 
 class GalleryViewController: UIViewController {
     
-    var collectionView = UICollectionView()
-    private var networkDataFetcher = NetworkDataFetcher(networking: NetworkSevice())
+    var collectionView: UICollectionView!
+    private var networkDataFetcher = NetworkDataFetcher()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,10 @@ class GalleryViewController: UIViewController {
         setupCollectionView()
         setupFlowLayout()
         networkDataFetcher.loadData { response in
-            print(response)
+            response?.response.items.map({items in
+                print(response?.response.items.first?.date)
+
+            })
         }
     }
     

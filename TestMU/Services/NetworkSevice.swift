@@ -4,14 +4,11 @@
 //
 //  Created by Андрей Цуркан on 23.04.2023.
 //
-//https://vk.com/album-128666765_266310117.
+
 import Foundation
 
-protocol Networking {
-    func request(path: String, params: [String:String], completion: @escaping (Data?, Error?) -> Void)
-}
 
-final class NetworkSevice: Networking {
+final class NetworkSevice {
     
     private let authService: AuthService
     
@@ -19,18 +16,16 @@ final class NetworkSevice: Networking {
         self.authService = authService
     }
     
-    func request(path: String, params: [String : String], completion: @escaping (Data?, Error?) -> Void) {
+    func request(path: String, params: [String : String]) -> URL? {
         var allParams:[String:String] = [:]
         
-        guard let token = authService.token else { return }
+        guard let token = authService.token else { return nil }
         allParams["owner_id"] = "-128666765"
         allParams["album_id"] = "266310117"
         allParams["access_token"] = token
         allParams["v"] = API.version
         let url = self.url(from: path, params: allParams)
-        let request = URLRequest(url: url)
-        let task = createDataTask(from: request, completion: completion)
-        task.resume()
+        return url
     }
     
     private func createDataTask(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask {

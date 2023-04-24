@@ -19,7 +19,14 @@
 		5CEEFC4329F49888004EBA90 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4229F49888004EBA90 /* API.swift */; };
 		5CEEFC4629F52E96004EBA90 /* PhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4529F52E96004EBA90 /* PhotoResponse.swift */; };
 		5CEEFC4829F5A49C004EBA90 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4729F5A49C004EBA90 /* NetworkDataFetcher.swift */; };
-		5CEEFC4A29F5E632004EBA90 /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4929F5E632004EBA90 /* SFProText-Bold.ttf */; };
+		5CEEFC4C29F5EAF9004EBA90 /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4B29F5EAF9004EBA90 /* SFProText-Bold.ttf */; };
+		5CEEFC5529F688A9004EBA90 /* MobileUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4E29F688A9004EBA90 /* MobileUpPresenter.swift */; };
+		5CEEFC5629F688A9004EBA90 /* MobileUpWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4F29F688A9004EBA90 /* MobileUpWorker.swift */; };
+		5CEEFC5729F688A9004EBA90 /* MobileUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC5029F688A9004EBA90 /* MobileUpRouter.swift */; };
+		5CEEFC5829F688A9004EBA90 /* MobileUpModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC5129F688A9004EBA90 /* MobileUpModels.swift */; };
+		5CEEFC5929F688A9004EBA90 /* MobileUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC5229F688A9004EBA90 /* MobileUpViewController.swift */; };
+		5CEEFC5A29F688A9004EBA90 /* MobileUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC5329F688A9004EBA90 /* MobileUpInteractor.swift */; };
+		5CEEFC5B29F688A9004EBA90 /* MobileUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CEEFC5429F688A9004EBA90 /* MobileUpViewController.xib */; };
 		EA37214094168DAA6A2F556C /* Pods_TestMU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B07934AEE1E1977269E82E40 /* Pods_TestMU.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +46,14 @@
 		5CEEFC4229F49888004EBA90 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5CEEFC4529F52E96004EBA90 /* PhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoResponse.swift; sourceTree = "<group>"; };
 		5CEEFC4729F5A49C004EBA90 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
-		5CEEFC4929F5E632004EBA90 /* SFProText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Bold.ttf"; sourceTree = "<group>"; };
+		5CEEFC4B29F5EAF9004EBA90 /* SFProText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Bold.ttf"; sourceTree = "<group>"; };
+		5CEEFC4E29F688A9004EBA90 /* MobileUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileUpPresenter.swift; sourceTree = "<group>"; };
+		5CEEFC4F29F688A9004EBA90 /* MobileUpWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileUpWorker.swift; sourceTree = "<group>"; };
+		5CEEFC5029F688A9004EBA90 /* MobileUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileUpRouter.swift; sourceTree = "<group>"; };
+		5CEEFC5129F688A9004EBA90 /* MobileUpModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileUpModels.swift; sourceTree = "<group>"; };
+		5CEEFC5229F688A9004EBA90 /* MobileUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileUpViewController.swift; sourceTree = "<group>"; };
+		5CEEFC5329F688A9004EBA90 /* MobileUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileUpInteractor.swift; sourceTree = "<group>"; };
+		5CEEFC5429F688A9004EBA90 /* MobileUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MobileUpViewController.xib; sourceTree = "<group>"; };
 		6D729EF5D5456AA234FFE636 /* Pods-TestMU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMU.release.xcconfig"; path = "Target Support Files/Pods-TestMU/Pods-TestMU.release.xcconfig"; sourceTree = "<group>"; };
 		B07934AEE1E1977269E82E40 /* Pods_TestMU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestMU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -93,6 +107,7 @@
 				5C9FEB7F29F461E00069C008 /* PhotoCell.swift */,
 				5C9FEB7D29F45D540069C008 /* GalleryViewController.swift */,
 				5C9FEB7529F3F1250069C008 /* Services */,
+				5CEEFC4D29F6882F004EBA90 /* MobileUp */,
 				5C9FEB6A29F3EF440069C008 /* Assets.xcassets */,
 				5C9FEB6C29F3EF440069C008 /* LaunchScreen.storyboard */,
 				5C9FEB6F29F3EF440069C008 /* Info.plist */,
@@ -115,7 +130,7 @@
 		5C9FEB7829F3F3850069C008 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				5CEEFC4929F5E632004EBA90 /* SFProText-Bold.ttf */,
+				5CEEFC4B29F5EAF9004EBA90 /* SFProText-Bold.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -127,6 +142,20 @@
 				5CEEFC4529F52E96004EBA90 /* PhotoResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5CEEFC4D29F6882F004EBA90 /* MobileUp */ = {
+			isa = PBXGroup;
+			children = (
+				5CEEFC5229F688A9004EBA90 /* MobileUpViewController.swift */,
+				5CEEFC5429F688A9004EBA90 /* MobileUpViewController.xib */,
+				5CEEFC5329F688A9004EBA90 /* MobileUpInteractor.swift */,
+				5CEEFC4E29F688A9004EBA90 /* MobileUpPresenter.swift */,
+				5CEEFC5129F688A9004EBA90 /* MobileUpModels.swift */,
+				5CEEFC4F29F688A9004EBA90 /* MobileUpWorker.swift */,
+				5CEEFC5029F688A9004EBA90 /* MobileUpRouter.swift */,
+			);
+			path = MobileUp;
 			sourceTree = "<group>";
 		};
 		EEE9895FF30B9EB48B8B6D9B /* Frameworks */ = {
@@ -198,8 +227,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C9FEB6E29F3EF440069C008 /* LaunchScreen.storyboard in Resources */,
-				5CEEFC4A29F5E632004EBA90 /* SFProText-Bold.ttf in Resources */,
+				5CEEFC4C29F5EAF9004EBA90 /* SFProText-Bold.ttf in Resources */,
 				5C9FEB6B29F3EF440069C008 /* Assets.xcassets in Resources */,
+				5CEEFC5B29F688A9004EBA90 /* MobileUpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,13 +284,19 @@
 			files = (
 				5CEEFC4629F52E96004EBA90 /* PhotoResponse.swift in Sources */,
 				5C9FEB6629F3EF440069C008 /* StartViewController.swift in Sources */,
+				5CEEFC5729F688A9004EBA90 /* MobileUpRouter.swift in Sources */,
+				5CEEFC5629F688A9004EBA90 /* MobileUpWorker.swift in Sources */,
 				5C9FEB7E29F45D540069C008 /* GalleryViewController.swift in Sources */,
+				5CEEFC5529F688A9004EBA90 /* MobileUpPresenter.swift in Sources */,
+				5CEEFC5829F688A9004EBA90 /* MobileUpModels.swift in Sources */,
 				5C9FEB6229F3EF440069C008 /* AppDelegate.swift in Sources */,
 				5CEEFC4829F5A49C004EBA90 /* NetworkDataFetcher.swift in Sources */,
 				5C9FEB6429F3EF440069C008 /* SceneDelegate.swift in Sources */,
 				5C9FEB8029F461E00069C008 /* PhotoCell.swift in Sources */,
+				5CEEFC5A29F688A9004EBA90 /* MobileUpInteractor.swift in Sources */,
 				5C9FEB7729F3F1D40069C008 /* AuthService.swift in Sources */,
 				5CEEFC4329F49888004EBA90 /* API.swift in Sources */,
+				5CEEFC5929F688A9004EBA90 /* MobileUpViewController.swift in Sources */,
 				5CEEFC4129F49775004EBA90 /* NetworkSevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

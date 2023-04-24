@@ -8,16 +8,18 @@
 import UIKit
 
 class StartViewController: UIViewController {
+    
     private var authService: AuthService!
     private let haederLabel = UILabel()
     private let enterButton = UIButton()
     private var screenHeight: CGFloat {
         return UIScreen.main.bounds.height
     }
+    
     private var screenWidth: CGFloat {
         return UIScreen.main.bounds.width
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHaederLabel()
@@ -32,7 +34,6 @@ class StartViewController: UIViewController {
         
         haederLabel.text = "Mobile\u{00A0}Up Gallery"
         haederLabel.font = UIFont(name: "SFProText-Bold", size: 44)
-
         haederLabel.numberOfLines = 2
         
         [haederLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: screenHeight/4),
@@ -55,9 +56,10 @@ class StartViewController: UIViewController {
          enterButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
          enterButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16)].forEach{ $0.isActive = true }
     }
+    
     @objc func actionEnterButton() {
         authService.wakeUpSession()
     }
-
+    
 }
 
