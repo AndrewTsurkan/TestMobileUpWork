@@ -15,9 +15,14 @@ protocol AuthSetviceDelegete: AnyObject {
 }
 
 class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
-    
     private let appId = "51621340"
     private let vkSdk: VKSdk
+    
+    weak var delagate: AuthSetviceDelegete?
+    
+    var token:String? {
+        return VKSdk.accessToken().accessToken
+    }
     
     override init() {
         vkSdk = VKSdk.initialize(withAppId: appId)
@@ -26,14 +31,9 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
         vkSdk.register(self)
         vkSdk.uiDelegate = self
     }
-    weak var delagate: AuthSetviceDelegete?
-    
-    var token:String? {
-        return VKSdk.accessToken().accessToken
-    }
     
     func wakeUpSession() {
-
+        
         let scope = ["offline"]
         VKSdk.wakeUpSession(scope) { [delagate] state, error in
             switch state {
@@ -49,6 +49,7 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
             }
         }
     }
+    
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
         print(#function)
         if result.token != nil {
@@ -59,7 +60,7 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     func vkSdkUserAuthorizationFailed() {
         print(#function)
         delagate?.authServiceSingInDidFail()
-
+        
     }
     
     func vkSdkShouldPresent(_ controller: UIViewController!) {
@@ -69,6 +70,6 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     
     func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {
         print(#function)
-
+        
     }
 }

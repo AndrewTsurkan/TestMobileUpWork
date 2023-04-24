@@ -8,7 +8,7 @@
 import Foundation
 
 struct Response: Codable {
-    var response: PhotosResponse
+    var response: [PhotosResponse]?
 }
 
 struct PhotosResponse: Codable{

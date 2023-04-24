@@ -11,18 +11,20 @@ import Foundation
 class NetworkDataFetcher {
     
     let networkService = NetworkSevice()
-
-
-    func loadData(completion: @escaping (Response?) -> ()) {
-        var url = networkService.request(path: API.photos, params: ["":""])
-        guard let url else { return }
-        let request = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: request) { data, _, _ in
-            guard let data else { return }
-            let response = try? JSONDecoder().decode(Response.self, from: data)
-            completion(response)
+    
+    
+    func fetchJson(closure: @escaping (Result< [PhotosResponse], Error >) -> ()) {
+        networkService.request { result in
+            switch result {
+            case.success(let data):
+                do {
+                    let response = try? JSONDecoder().decode(Response.self, from: data)
+                    closure(.success(response?.response ?? []))
+                }
+            case.failure(let error):
+                closure(.failure(error))
+            }
         }
-        task.resume()
     }
 }
 

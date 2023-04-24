@@ -10,13 +10,19 @@ import Foundation
 
 final class NetworkSevice {
     
+    enum APIError: Error {
+        case unknown
+        case invalidURL
+        case invalidData
+    }
+    
     private let authService: AuthService
     
     init(authService: AuthService = SceneDelegate.shared().authService) {
         self.authService = authService
     }
     
-    func request(path: String, params: [String : String]) -> URL? {
+    func getUrl(path: String) -> URL? {
         var allParams:[String:String] = [:]
         
         guard let token = authService.token else { return nil }
@@ -28,14 +34,6 @@ final class NetworkSevice {
         return url
     }
     
-    private func createDataTask(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask {
-        return URLSession.shared.dataTask(with: request) { data, response, error  in
-            DispatchQueue.main.async {
-                completion(data, error)
-            }
-        }
-    }
-    
     private func url(from path: String, params:[String:String]) -> URL {
         var components = URLComponents()
         
@@ -45,4 +43,33 @@ final class NetworkSevice {
         components.queryItems = params.map{ URLQueryItem(name: $0, value: $1) }
         return components.url!
     }
+    
+    func request(completion: @escaping (Result<Data,Error>) -> Void) {
+        let url = getUrl(path: API.photos)
+        guard let url else {
+            completion(.failure(APIError.invalidURL))
+            return
+        }
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard error == nil else {
+                completion(.failure(APIError.unknown))
+                return
+            }
+            guard let data else {
+                completion(.failure(APIError.invalidData))
+                return
+            }
+            completion(.success(data))
+        }
+        task.resume()
+    }
 }
+
+
+//    private func createDataTask(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask {
+//        return URLSession.shared.dataTask(with: request) { data, response, error  in
+//            DispatchQueue.main.async {
+//                completion(data, error)
+//            }
+//        }
+//    }

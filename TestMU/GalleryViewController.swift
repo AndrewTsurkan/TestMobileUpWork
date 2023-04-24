@@ -11,20 +11,16 @@ class GalleryViewController: UIViewController {
     
     var collectionView: UICollectionView!
     private var networkDataFetcher = NetworkDataFetcher()
+    private var photos: [PhotosResponse] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "MobileUp Gallery"
-        view.backgroundColor = .blue
-        
         setupCollectionView()
         setupFlowLayout()
-        networkDataFetcher.loadData { response in
-            response?.response.items.map({items in
-                print(response?.response.items.first?.date)
-
-            })
-        }
+        loadData()
+        
+        title = "MobileUp Gallery"
+        view.backgroundColor = .white
     }
     
     private func setupCollectionView() {
@@ -47,17 +43,36 @@ class GalleryViewController: UIViewController {
         
         return layout
     }
-}
     
-    extension GalleryViewController: UICollectionViewDataSource {
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return 0
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.reusedId, for: indexPath) as? PhotoCell else {
-                return UICollectionViewCell()
+    private func loadData() {
+        let url = NetworkSevice().getUrl(path: API.photos)
+        networkDataFetcher.fetchJson { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case let .success(items):
+                self.photos = items
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            case .failure:
+                break
             }
-            return cell
         }
     }
+}
+
+extension GalleryViewController: UICollectionViewDataSource  {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return photos.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.reusedId, for: indexPath) as? PhotoCell else {
+            return UICollectionViewCell()
+        }
+        
+        let photos = photos[indexPath.item]
+        cell.responseResult = photos
+        return cell
+    }
+}

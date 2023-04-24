@@ -15,7 +15,6 @@ class StartViewController: UIViewController {
     private var screenHeight: CGFloat {
         return UIScreen.main.bounds.height
     }
-    
     private var screenWidth: CGFloat {
         return UIScreen.main.bounds.width
     }
