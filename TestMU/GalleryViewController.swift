@@ -18,7 +18,7 @@ class GalleryViewController: UIViewController {
         setupCollectionView()
         setupFlowLayout()
         loadData()
-
+        
         title = "MobileUp Gallery"
         view.backgroundColor = .white
     }
@@ -40,7 +40,9 @@ class GalleryViewController: UIViewController {
     
     private func setupFlowLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSizeMake(100, 100)
+        layout.itemSize = UICollectionViewFlowLayout.automaticSize
+        layout.minimumLineSpacing = 3
+        layout.minimumInteritemSpacing = 2
         
         return layout
     }

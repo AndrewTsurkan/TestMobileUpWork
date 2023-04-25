@@ -14,7 +14,6 @@ class PhotosLoadingService {
         case invalidData
     }
     private let authService: AuthService
-//    let networkService = NetworkSevice()
     
     init(authService: AuthService = SceneDelegate.shared().authService) {
         self.authService = authService
@@ -24,7 +23,6 @@ class PhotosLoadingService {
          request { result in
             switch result {
             case.success(let data):
-                print(data)
                 do {
                     let response = try? JSONDecoder().decode(Response.self, from: data)
                     closure(.success(response?.response ?? []))

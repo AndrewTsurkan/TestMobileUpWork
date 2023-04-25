@@ -15,7 +15,6 @@ class PhotoCell: UICollectionViewCell {
     var responseResult: PhotosResponse? {
         didSet{
             reloadData()
-            print(responseResult)
         }
     }
     
@@ -45,7 +44,7 @@ class PhotoCell: UICollectionViewCell {
         guard let responseResult else {
             return
         }
-            PhotosLoadingService().request { [weak self] result in
+        PhotosLoadingService().request { [weak self] result in
             switch result {
             case let .success(data):
                 let image = UIImage(data: data)
