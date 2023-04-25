@@ -44,7 +44,12 @@ class PhotoCell: UICollectionViewCell {
         guard let responseResult else {
             return
         }
-        PhotosLoadingService().request { [weak self] result in
+        
+        let urlString = responseResult.items[]
+        guard let urlString else { return }
+        let url = URL(string: urlString)
+        guard let url else { return }
+        PhotosLoadingService().request(url: url) { [weak self] result in
             switch result {
             case let .success(data):
                 let image = UIImage(data: data)

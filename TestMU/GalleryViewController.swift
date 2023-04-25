@@ -27,6 +27,7 @@ class GalleryViewController: UIViewController {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: setupFlowLayout())
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+//        collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         let saveArea = view.safeAreaLayoutGuide
         
         [collectionView.topAnchor.constraint(equalTo: saveArea.topAnchor),
@@ -49,7 +50,8 @@ class GalleryViewController: UIViewController {
     
     private func loadData() {
         let url = PhotosLoadingService().getUrl(path: API.photos)
-        photosLoadingService.fetchJson { [weak self] result in
+        guard  let url else { return }
+        photosLoadingService.fetchJson(url: url) { [weak self] result in
             guard let self else { return }
             switch result {
             case let .success(items):
@@ -75,6 +77,7 @@ extension GalleryViewController: UICollectionViewDataSource  {
         }
         
         let photos = photos[indexPath.item]
+//        cell.responseResult = photos
         return cell
     }
 }

@@ -19,13 +19,15 @@ class PhotosLoadingService {
         self.authService = authService
     }
     
-    func fetchJson(closure: @escaping (Result< [PhotosResponse], Error >) -> ()) {
-         request { result in
+    func fetchJson(url: URL, closure: @escaping (Result< [PhotosResponse], Error >) -> ()) {
+        request(url: url) { result in
             switch result {
             case.success(let data):
                 do {
                     let response = try? JSONDecoder().decode(Response.self, from: data)
                     closure(.success(response?.response ?? []))
+                } catch let error {
+                    closure(.failure(error))
                 }
             case.failure(let error):
                 closure(.failure(error))
@@ -55,7 +57,7 @@ class PhotosLoadingService {
         return components.url!
     }
     
-    func request(completion: @escaping (Result<Data,Error>) -> Void) {
+    func request(url: URL,completion: @escaping (Result<Data,Error>) -> Void) {
         let url = getUrl(path: API.photos)
         guard let url else {
             completion(.failure(APIError.invalidURL))
