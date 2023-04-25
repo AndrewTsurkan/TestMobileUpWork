@@ -9,8 +9,8 @@ import UIKit
 
 class GalleryViewController: UIViewController {
     
-    var collectionView: UICollectionView!
-    private var networkDataFetcher = NetworkDataFetcher()
+    private var collectionView: UICollectionView!
+    private var photosLoadingService = PhotosLoadingService()
     private var photos: [PhotosResponse] = []
     
     override func viewDidLoad() {
@@ -18,7 +18,7 @@ class GalleryViewController: UIViewController {
         setupCollectionView()
         setupFlowLayout()
         loadData()
-        
+
         title = "MobileUp Gallery"
         view.backgroundColor = .white
     }
@@ -27,17 +27,18 @@ class GalleryViewController: UIViewController {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: setupFlowLayout())
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        let saveArea = view.safeAreaLayoutGuide
         
-        [collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-         collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-         collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-         collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)].forEach{ $0.isActive = true }
+        [collectionView.topAnchor.constraint(equalTo: saveArea.topAnchor),
+         collectionView.leftAnchor.constraint(equalTo: saveArea.leftAnchor),
+         collectionView.rightAnchor.constraint(equalTo: saveArea.rightAnchor),
+         collectionView.bottomAnchor.constraint(equalTo: saveArea.bottomAnchor)].forEach{ $0.isActive = true }
         
         collectionView.dataSource = self
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.reusedId)
     }
     
-    func setupFlowLayout() -> UICollectionViewFlowLayout {
+    private func setupFlowLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSizeMake(100, 100)
         
@@ -45,8 +46,8 @@ class GalleryViewController: UIViewController {
     }
     
     private func loadData() {
-        let url = NetworkSevice().getUrl(path: API.photos)
-        networkDataFetcher.fetchJson { [weak self] result in
+        let url = PhotosLoadingService().getUrl(path: API.photos)
+        photosLoadingService.fetchJson { [weak self] result in
             guard let self else { return }
             switch result {
             case let .success(items):
@@ -72,7 +73,6 @@ extension GalleryViewController: UICollectionViewDataSource  {
         }
         
         let photos = photos[indexPath.item]
-        cell.responseResult = photos
         return cell
     }
 }

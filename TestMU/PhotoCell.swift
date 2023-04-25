@@ -15,6 +15,7 @@ class PhotoCell: UICollectionViewCell {
     var responseResult: PhotosResponse? {
         didSet{
             reloadData()
+            print(responseResult)
         }
     }
     
@@ -44,9 +45,7 @@ class PhotoCell: UICollectionViewCell {
         guard let responseResult else {
             return
         }
-        
-        let url = NetworkSevice().getUrl(path: API.photos)
-        NetworkSevice().request { [weak self] result in
+            PhotosLoadingService().request { [weak self] result in
             switch result {
             case let .success(data):
                 let image = UIImage(data: data)

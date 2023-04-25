@@ -15,11 +15,10 @@
 		5C9FEB7729F3F1D40069C008 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9FEB7629F3F1D40069C008 /* AuthService.swift */; };
 		5C9FEB7E29F45D540069C008 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9FEB7D29F45D540069C008 /* GalleryViewController.swift */; };
 		5C9FEB8029F461E00069C008 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9FEB7F29F461E00069C008 /* PhotoCell.swift */; };
-		5CEEFC4129F49775004EBA90 /* NetworkSevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4029F49775004EBA90 /* NetworkSevice.swift */; };
 		5CEEFC4329F49888004EBA90 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4229F49888004EBA90 /* API.swift */; };
 		5CEEFC4629F52E96004EBA90 /* PhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4529F52E96004EBA90 /* PhotoResponse.swift */; };
-		5CEEFC4829F5A49C004EBA90 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4729F5A49C004EBA90 /* NetworkDataFetcher.swift */; };
 		5CEEFC4C29F5EAF9004EBA90 /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CEEFC4B29F5EAF9004EBA90 /* SFProText-Bold.ttf */; };
+		5CEEFC5D29F7C703004EBA90 /* PhotosLoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEFC5C29F7C703004EBA90 /* PhotosLoadingService.swift */; };
 		EA37214094168DAA6A2F556C /* Pods_TestMU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B07934AEE1E1977269E82E40 /* Pods_TestMU.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,11 +34,10 @@
 		5C9FEB7629F3F1D40069C008 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		5C9FEB7D29F45D540069C008 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		5C9FEB7F29F461E00069C008 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
-		5CEEFC4029F49775004EBA90 /* NetworkSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSevice.swift; sourceTree = "<group>"; };
 		5CEEFC4229F49888004EBA90 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5CEEFC4529F52E96004EBA90 /* PhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoResponse.swift; sourceTree = "<group>"; };
-		5CEEFC4729F5A49C004EBA90 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		5CEEFC4B29F5EAF9004EBA90 /* SFProText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Bold.ttf"; sourceTree = "<group>"; };
+		5CEEFC5C29F7C703004EBA90 /* PhotosLoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosLoadingService.swift; sourceTree = "<group>"; };
 		6D729EF5D5456AA234FFE636 /* Pods-TestMU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMU.release.xcconfig"; path = "Target Support Files/Pods-TestMU/Pods-TestMU.release.xcconfig"; sourceTree = "<group>"; };
 		B07934AEE1E1977269E82E40 /* Pods_TestMU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestMU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -105,9 +103,8 @@
 			children = (
 				5CEEFC4429F52E6E004EBA90 /* Models */,
 				5C9FEB7629F3F1D40069C008 /* AuthService.swift */,
-				5CEEFC4029F49775004EBA90 /* NetworkSevice.swift */,
-				5CEEFC4729F5A49C004EBA90 /* NetworkDataFetcher.swift */,
 				5CEEFC4229F49888004EBA90 /* API.swift */,
+				5CEEFC5C29F7C703004EBA90 /* PhotosLoadingService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -256,12 +253,11 @@
 				5C9FEB6629F3EF440069C008 /* StartViewController.swift in Sources */,
 				5C9FEB7E29F45D540069C008 /* GalleryViewController.swift in Sources */,
 				5C9FEB6229F3EF440069C008 /* AppDelegate.swift in Sources */,
-				5CEEFC4829F5A49C004EBA90 /* NetworkDataFetcher.swift in Sources */,
 				5C9FEB6429F3EF440069C008 /* SceneDelegate.swift in Sources */,
 				5C9FEB8029F461E00069C008 /* PhotoCell.swift in Sources */,
 				5C9FEB7729F3F1D40069C008 /* AuthService.swift in Sources */,
+				5CEEFC5D29F7C703004EBA90 /* PhotosLoadingService.swift in Sources */,
 				5CEEFC4329F49888004EBA90 /* API.swift in Sources */,
-				5CEEFC4129F49775004EBA90 /* NetworkSevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

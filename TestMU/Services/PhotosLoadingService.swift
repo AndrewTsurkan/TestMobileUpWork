@@ -1,25 +1,38 @@
 //
-//  NetworkSevice.swift
+//  PhotosLoadingService.swift
 //  TestMU
 //
-//  Created by Андрей Цуркан on 23.04.2023.
+//  Created by Андрей Цуркан on 25.04.2023.
 //
 
 import Foundation
 
-
-final class NetworkSevice {
-    
+class PhotosLoadingService {
     enum APIError: Error {
         case unknown
         case invalidURL
         case invalidData
     }
-    
     private let authService: AuthService
+//    let networkService = NetworkSevice()
     
     init(authService: AuthService = SceneDelegate.shared().authService) {
         self.authService = authService
+    }
+    
+    func fetchJson(closure: @escaping (Result< [PhotosResponse], Error >) -> ()) {
+         request { result in
+            switch result {
+            case.success(let data):
+                print(data)
+                do {
+                    let response = try? JSONDecoder().decode(Response.self, from: data)
+                    closure(.success(response?.response ?? []))
+                }
+            case.failure(let error):
+                closure(.failure(error))
+            }
+        }
     }
     
     func getUrl(path: String) -> URL? {
@@ -30,11 +43,11 @@ final class NetworkSevice {
         allParams["album_id"] = "266310117"
         allParams["access_token"] = token
         allParams["v"] = API.version
-        let url = self.url(from: path, params: allParams)
+        let url = self.transformationUrl(from: path, params: allParams)
         return url
     }
     
-    private func url(from path: String, params:[String:String]) -> URL {
+    private func transformationUrl(from path: String, params:[String:String]) -> URL {
         var components = URLComponents()
         
         components.scheme = API.scheme
@@ -64,12 +77,3 @@ final class NetworkSevice {
         task.resume()
     }
 }
-
-
-//    private func createDataTask(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask {
-//        return URLSession.shared.dataTask(with: request) { data, response, error  in
-//            DispatchQueue.main.async {
-//                completion(data, error)
-//            }
-//        }
-//    }

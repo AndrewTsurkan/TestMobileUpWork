@@ -31,13 +31,13 @@ class StartViewController: UIViewController {
         view.addSubview(haederLabel)
         haederLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        haederLabel.text = "Mobile\u{00A0}Up Gallery"
+        haederLabel.text = "Mobile\u{00A0}Up\nGallery"
         haederLabel.font = UIFont(name: "SFProText-Bold", size: 44)
         haederLabel.numberOfLines = 2
         
         [haederLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: screenHeight/4),
          haederLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
-         haederLabel.widthAnchor.constraint(equalToConstant: 227)].forEach{ $0.isActive = true }
+         haederLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16)].forEach{ $0.isActive = true }
     }
     
     private func setupEnterButton() {
