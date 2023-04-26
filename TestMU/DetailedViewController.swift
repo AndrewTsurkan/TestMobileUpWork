@@ -6,19 +6,29 @@
 //
 
 import UIKit
+import Nuke
 
 class DetailedViewController: UIViewController {
     
     var imageView = UIImageView()
     var collectionView: UICollectionView!
-    var detailPhotos: PhotosItems? {
-        didSet{
-            
-        }
+    var detailPhotos: PhotosItems
+    
+    init(detailPhotos: PhotosItems) {
+        self.detailPhotos = detailPhotos
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        nil
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updataDate()
+        reloadData()
+        setupImageView()
+        view.backgroundColor = .white
     }
     
     private func setupCollectionView() {
@@ -39,13 +49,12 @@ class DetailedViewController: UIViewController {
         view.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         let safeArea = view.safeAreaLayoutGuide
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
 
-        
-        [imageView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+        [imageView.topAnchor.constraint(equalTo: view.topAnchor),
          imageView.leftAnchor.constraint(equalTo: safeArea.leftAnchor),
          imageView.rightAnchor.constraint(equalTo: safeArea.rightAnchor),
-         imageView.bottomAnchor.constraint(equalTo: collectionView.topAnchor)].forEach{ $0.isActive = true }
+         imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)].forEach{ $0.isActive = true }
     }
     
     private func setupFlowLayout() -> UICollectionViewFlowLayout {
@@ -54,17 +63,33 @@ class DetailedViewController: UIViewController {
         layout.minimumLineSpacing = 2
         layout.minimumInteritemSpacing = 0
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        
         return layout
     }
     
-//    private func updata() {
-////        title = String
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
-//        dateFormatter.locale = NSLocale.current
-//        dateFormatter.dateFormat = "yyyy-MM-dd" //Specify your format that you want
-//        let strDate = dateFormatter.string(from: detailPhotos?.date)
-//    }
+    private func updataDate() {
+        guard let timestamp = detailPhotos.date else { return }
+        let date = Date(timeIntervalSince1970: Double(timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.current
+        dateFormatter.dateFormat = "d MMMM yyyy"
+        let strDate = dateFormatter.string(from: date)
+        title = strDate
+    }
+    func reloadData() {
+        
+        let urlString = detailPhotos.sizes.first(where: { $0.type == "w"})?.url
+        guard let urlString else { return }
+        let url = URL(string: urlString)
+        ImagePipeline.shared.loadImage(with: url) { [weak self] result in
+            switch result {
+            case let .success(success):
+                DispatchQueue.main.async {
+                    self?.imageView.image = success.image
+                }
+            case .failure(let failure):
+                break
+            }
+        }
+    }
 }
 

@@ -1,16 +1,20 @@
 PODS:
+  - Nuke (10.7.1)
   - VK-ios-sdk (1.6.4)
 
 DEPENDENCIES:
+  - Nuke
   - VK-ios-sdk
 
 SPEC REPOS:
   trunk:
+    - Nuke
     - VK-ios-sdk
 
 SPEC CHECKSUMS:
+  Nuke: 279f17a599fd1c83cf51de5e0e1f2db143a287b0
   VK-ios-sdk: 21091f214d271a74b3a3313ec62d1c4da98ce00f
 
-PODFILE CHECKSUM: 20a1cf689045db2cd8026b5e6b644d460093181a
+PODFILE CHECKSUM: 381362cefc6d6e6e2ef053538ca2466ab98bb68c
 
 COCOAPODS: 1.12.1

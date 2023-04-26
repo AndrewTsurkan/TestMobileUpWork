@@ -8,6 +8,7 @@ target 'TestMU' do
   # Pods for TestMU
 
 pod "VK-ios-sdk"
+pod "Nuke"
 end
 
 post_install do |installer|

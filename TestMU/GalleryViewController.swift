@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
 class GalleryViewController: UIViewController {
     
@@ -17,7 +18,7 @@ class GalleryViewController: UIViewController {
         super.viewDidLoad()
         setupCollectionView()
         loadData()
-        
+        setupButton()
         title = "MobileUp Gallery"
         view.backgroundColor = .white
     }
@@ -27,13 +28,13 @@ class GalleryViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        let saveArea = view.safeAreaLayoutGuide
+        let safeArea = view.safeAreaLayoutGuide
         collectionView.delegate = self
         
-        [collectionView.topAnchor.constraint(equalTo: saveArea.topAnchor),
-         collectionView.leftAnchor.constraint(equalTo: saveArea.leftAnchor),
-         collectionView.rightAnchor.constraint(equalTo: saveArea.rightAnchor),
-         collectionView.bottomAnchor.constraint(equalTo: saveArea.bottomAnchor)].forEach{ $0.isActive = true }
+        [collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+         collectionView.leftAnchor.constraint(equalTo: safeArea.leftAnchor),
+         collectionView.rightAnchor.constraint(equalTo: safeArea.rightAnchor),
+         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)].forEach{ $0.isActive = true }
         
         collectionView.dataSource = self
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.reusedId)
@@ -41,10 +42,12 @@ class GalleryViewController: UIViewController {
     
     private func setupFlowLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = UICollectionViewFlowLayout.automaticSize
+        
         layout.minimumLineSpacing = 2
-        layout.minimumInteritemSpacing = 0
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.minimumInteritemSpacing = 3
+        let screen = UIScreen.main.bounds.width / 2 - 2
+        
+        layout.itemSize = .init(width: screen, height: screen)
         
         return layout
     }
@@ -65,6 +68,17 @@ class GalleryViewController: UIViewController {
             }
         }
     }
+    
+    private func setupButton() {
+        let button = UIBarButtonItem(title: "Выход", style: .plain, target: self, action: #selector(onExitTap))
+        button.tintColor = .black
+        navigationItem.rightBarButtonItem = button
+    }
+    
+    @objc private func onExitTap() {
+        VKSdk.forceLogout()
+        let startViewController = StartViewController()
+    }
 }
 
 extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate  {
@@ -78,15 +92,14 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             return UICollectionViewCell()
         }
         
-        let infoImage = photos?.items[indexPath.item].sizes.first(where: { $0.type == "z"})?.url
+        let infoImage = photos?.items[indexPath.item].sizes.first(where: { $0.type == "m"})?.url
         cell.urlString = infoImage
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailedView = DetailedViewController()
-        let photos = photos?.items[indexPath.item]
-        detailedView.detailPhotos = photos
-        self.navigationController?.pushViewController(detailedView, animated: true)
+        guard let photos = photos?.items[indexPath.item] else { return }
+        let detailedView = DetailedViewController(detailPhotos: photos)
+        navigationController?.pushViewController(detailedView, animated: true)
     }
 }

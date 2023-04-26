@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Nuke
 
 class PhotoCell: UICollectionViewCell {
     
@@ -20,7 +21,6 @@ class PhotoCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupImageView()
-        backgroundColor = .red
     }
     
     required init?(coder: NSCoder) {
@@ -28,9 +28,9 @@ class PhotoCell: UICollectionViewCell {
     }
     
     private func setupImageView() {
-        addSubview(imageView)
+        contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
 
         
         self.clipsToBounds = true
@@ -42,18 +42,16 @@ class PhotoCell: UICollectionViewCell {
     }
 
     func reloadData() {
-        guard let urlString else { return }
-        let url = URL(string: urlString)
-        guard let url else { return }
-        PhotosLoadingService().request(url: url) { [weak self] result in
+        guard let urlString, let url = URL(string: urlString) else { return }
+        
+        ImagePipeline.shared.loadImage(with: url) { [weak self] result in
             switch result {
-            case let .success(data):
-                let image = UIImage(data: data)
+            case let .success(success):
                 DispatchQueue.main.async {
-                    self?.imageView.image = image
+                    self?.imageView.image = success.image
                 }
-            case .failure(_):
-                self?.imageView.image = UIImage(named: "play.slash")
+            case .failure(let failure):
+                break
             }
         }
     }
