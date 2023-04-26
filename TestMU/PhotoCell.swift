@@ -11,16 +11,16 @@ class PhotoCell: UICollectionViewCell {
     
     let imageView = UIImageView()
     static var reusedId = "InstallCell"
-    
-    var responseResult: PhotosResponse? {
+    var urlString: String? {
         didSet{
             reloadData()
         }
     }
-    
+ 
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupImageView()
+        backgroundColor = .red
     }
     
     required init?(coder: NSCoder) {
@@ -28,9 +28,10 @@ class PhotoCell: UICollectionViewCell {
     }
     
     private func setupImageView() {
-        self.contentView.addSubview(imageView)
+        addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
+
         
         self.clipsToBounds = true
         
@@ -39,13 +40,8 @@ class PhotoCell: UICollectionViewCell {
          imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
          imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)].forEach{ $0.isActive = true }
     }
-    
+
     func reloadData() {
-        guard let responseResult else {
-            return
-        }
-        
-        let urlString = responseResult.items[]
         guard let urlString else { return }
         let url = URL(string: urlString)
         guard let url else { return }

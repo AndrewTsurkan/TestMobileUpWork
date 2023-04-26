@@ -11,12 +11,11 @@ class GalleryViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     private var photosLoadingService = PhotosLoadingService()
-    private var photos: [PhotosResponse] = []
+    private var photos: PhotosResponse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        setupFlowLayout()
         loadData()
         
         title = "MobileUp Gallery"
@@ -27,8 +26,9 @@ class GalleryViewController: UIViewController {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: setupFlowLayout())
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         let saveArea = view.safeAreaLayoutGuide
+        collectionView.delegate = self
         
         [collectionView.topAnchor.constraint(equalTo: saveArea.topAnchor),
          collectionView.leftAnchor.constraint(equalTo: saveArea.leftAnchor),
@@ -42,8 +42,9 @@ class GalleryViewController: UIViewController {
     private func setupFlowLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = UICollectionViewFlowLayout.automaticSize
-        layout.minimumLineSpacing = 3
-        layout.minimumInteritemSpacing = 2
+        layout.minimumLineSpacing = 2
+        layout.minimumInteritemSpacing = 0
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         
         return layout
     }
@@ -66,9 +67,10 @@ class GalleryViewController: UIViewController {
     }
 }
 
-extension GalleryViewController: UICollectionViewDataSource  {
+extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate  {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        guard let count = photos?.count else { return 0 }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -76,8 +78,15 @@ extension GalleryViewController: UICollectionViewDataSource  {
             return UICollectionViewCell()
         }
         
-        let photos = photos[indexPath.item]
-//        cell.responseResult = photos
+        let infoImage = photos?.items[indexPath.item].sizes.first(where: { $0.type == "z"})?.url
+        cell.urlString = infoImage
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailedView = DetailedViewController()
+        let photos = photos?.items[indexPath.item]
+        detailedView.detailPhotos = photos
+        self.navigationController?.pushViewController(detailedView, animated: true)
     }
 }
