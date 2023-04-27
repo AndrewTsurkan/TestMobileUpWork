@@ -15,7 +15,7 @@ class DetailedViewController: UIViewController {
     var detailPhotos: PhotosItems
     private var photosLoadingService = PhotosLoadingService()
     private var photos: PhotosResponse?
-    let pinchGesture = UIPanGestureRecognizer(target: DetailedViewController.self, action: #selector(DetailedViewController.pinchGesture(sender:)))
+//    let pinchGesture = UIPanGestureRecognizer(target: DetailedViewController.self, action: #selector(DetailedViewController.pinchGesture(sender:)))
     
     
     init(detailPhotos: PhotosItems) {
@@ -36,13 +36,15 @@ class DetailedViewController: UIViewController {
         setupImageView()
         setupButtonShare()
         setupButtonBack()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "colorSetDark")
+
         
     }
-    @objc func pinchGesture(sender: UIPinchGestureRecognizer) {
-        sender.view!.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
-        sender.scale = 1
-    }
+    // Моя попытка сделать приближение
+//    @objc func pinchGesture(sender: UIPinchGestureRecognizer) {
+//        sender.view!.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
+//        sender.scale = 1
+//    }
     
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: setupFlowLayout())
@@ -50,7 +52,7 @@ class DetailedViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         let saveArea = view.safeAreaLayoutGuide
-        imageView.addGestureRecognizer(pinchGesture)
+//        imageView.addGestureRecognizer(pinchGesture)
         
         collectionView.dataSource = self
         collectionView.register(DeteiledCell.self, forCellWithReuseIdentifier: DeteiledCell.reusedId)
@@ -127,13 +129,13 @@ class DetailedViewController: UIViewController {
     private func setupButtonShare() {
         let buttonShare = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(onShareTap))
         navigationItem.rightBarButtonItem = buttonShare
-        buttonShare.tintColor = .black
+        buttonShare.tintColor = UIColor(named: "colorSetLight")
     }
     
     private func setupButtonBack() {
         let buttonBack = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(onBackTap))
         navigationItem.leftBarButtonItem = buttonBack
-        buttonBack.tintColor = .black
+        buttonBack.tintColor = UIColor(named: "colorSetLight")
     }
     
     @objc private func onBackTap() {

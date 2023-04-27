@@ -23,7 +23,7 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         setupHaederLabel()
         setupEnterButton()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "colorSetDark")
         authService = SceneDelegate.shared().authService
     }
     
@@ -34,6 +34,7 @@ class StartViewController: UIViewController {
         haederLabel.text = "Mobile\u{00A0}Up\nGallery"
         haederLabel.font = UIFont(name: "SFProText-Bold", size: 44)
         haederLabel.numberOfLines = 2
+        haederLabel.textColor = UIColor(named: "colorSetLight")
         
         [haederLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: screenHeight/4),
          haederLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
@@ -46,8 +47,9 @@ class StartViewController: UIViewController {
         
         enterButton.setTitle("Вход через VK", for: .normal)
         enterButton.titleLabel?.font = UIFont(name: "SFProText-Bold", size: 15)
-        enterButton.backgroundColor = .black
+        enterButton.backgroundColor = UIColor(named: "colorSetLight")
         enterButton.layer.cornerRadius = 12
+        enterButton.setTitleColor(UIColor(named: "colorSetDark"), for: .normal)
         enterButton.addTarget(self, action: #selector(actionEnterButton), for: .touchUpInside)
         
         [enterButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),

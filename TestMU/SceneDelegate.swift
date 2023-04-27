@@ -48,6 +48,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthSetviceDelegete {
     }
     
     func authServiceSingInDidFail() {
+        let fail = UIAlertController(title: "Не удалось авторизироваться", message: nil, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default)
+        fail.addAction(okButton)
+        window?.rootViewController?.present(fail, animated: true)
         print(#function)
     }
     

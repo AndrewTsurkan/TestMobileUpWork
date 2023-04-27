@@ -20,7 +20,8 @@ class GalleryViewController: UIViewController {
         loadData()
         setupButton()
         title = "MobileUp Gallery"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "colorSetDark")
+        navigationController?.navigationBar.backgroundColor = UIColor(named: "colorSetDark")
     }
     
     private func setupCollectionView() {
@@ -70,14 +71,13 @@ class GalleryViewController: UIViewController {
     
     private func setupButton() {
         let button = UIBarButtonItem(title: "Выход", style: .plain, target: self, action: #selector(onExitTap))
-        button.tintColor = .black
+        button.tintColor = UIColor(named: "colorSetLight")
         navigationItem.rightBarButtonItem = button
     }
     
     @objc private func onExitTap() {
         VKSdk.forceLogout()
-        let startViewController = StartViewController()
-    
+        navigationController?.popViewController(animated: true)
     }
 }
 
