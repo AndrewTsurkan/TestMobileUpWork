@@ -19,6 +19,10 @@ class GalleryViewController: UIViewController {
         setupCollectionView()
         loadData()
         setupButton()
+        setupNavigationItems()
+    }
+    
+    private func setupNavigationItems() {
         title = "MobileUp Gallery"
         view.backgroundColor = UIColor(named: "colorSetDark")
         navigationController?.navigationBar.backgroundColor = UIColor(named: "colorSetDark")
