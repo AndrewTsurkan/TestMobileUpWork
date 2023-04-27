@@ -93,7 +93,7 @@ class DetailedViewController: UIViewController {
         let strDate = dateFormatter.string(from: date)
         title = strDate
     }
-    func reloadData() {
+    private func reloadData() {
         let url = PhotosLoadingService().getUrl(path: API.photos)
         guard  let url else { return }
         photosLoadingService.fetchJson(url: url) { [weak self] result in
@@ -110,7 +110,7 @@ class DetailedViewController: UIViewController {
         }
     }
     
-    func reloadImage() {
+     private func reloadImage() {
         let urlString = detailPhotos.sizes.first(where: { $0.type == "z"})?.url
         guard let urlString else { return }
         let url = URL(string: urlString)
