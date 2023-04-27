@@ -42,8 +42,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthSetviceDelegete {
     
     func authServiceSingIn() {
         let galleryVC = GalleryViewController()
-        guard let startVC = UIApplication.shared.windows.first?.rootViewController else { return }
-        (startVC as? UINavigationController)?.pushViewController(galleryVC, animated: true)
+        guard let navigationController = window?.rootViewController else { return }
+        (navigationController as? UINavigationController)?.pushViewController(galleryVC, animated: true)
 
         print(#function)
     }
