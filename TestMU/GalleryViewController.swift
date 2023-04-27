@@ -92,7 +92,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             return UICollectionViewCell()
         }
         
-        let infoImage = photos?.items[indexPath.item].sizes.first(where: { $0.type == "m"})?.url
+        let infoImage = photos?.items[indexPath.item].sizes.first(where: { $0.type == "q"})?.url
         cell.urlString = infoImage
         return cell
     }

@@ -109,7 +109,7 @@ class DetailedViewController: UIViewController {
     }
     
     func reloadImage() {
-        let urlString = detailPhotos.sizes.first(where: { $0.type == "w"})?.url
+        let urlString = detailPhotos.sizes.first(where: { $0.type == "z"})?.url
         guard let urlString else { return }
         let url = URL(string: urlString)
         ImagePipeline.shared.loadImage(with: url) { [weak self] result in

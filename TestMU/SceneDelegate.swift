@@ -44,7 +44,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthSetviceDelegete {
         let galleryVC = GalleryViewController()
         let navVC = UINavigationController(rootViewController: galleryVC)
         window?.rootViewController = navVC
-//        UINavigationController?.pushViewController(galleryVC, animated: true)
         print(#function)
     }
     
