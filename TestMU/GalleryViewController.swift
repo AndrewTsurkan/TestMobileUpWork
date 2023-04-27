@@ -46,7 +46,6 @@ class GalleryViewController: UIViewController {
         layout.minimumLineSpacing = 2
         layout.minimumInteritemSpacing = 3
         let screen = UIScreen.main.bounds.width / 2 - 2
-        
         layout.itemSize = .init(width: screen, height: screen)
         
         return layout
@@ -78,6 +77,7 @@ class GalleryViewController: UIViewController {
     @objc private func onExitTap() {
         VKSdk.forceLogout()
         let startViewController = StartViewController()
+    
     }
 }
 
@@ -103,3 +103,5 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         navigationController?.pushViewController(detailedView, animated: true)
     }
 }
+
+

@@ -10,9 +10,13 @@ import Nuke
 
 class DetailedViewController: UIViewController {
     
-    var imageView = UIImageView()
-    var collectionView: UICollectionView!
+    private var imageView = UIImageView()
+    private var collectionView: UICollectionView!
     var detailPhotos: PhotosItems
+    private var photosLoadingService = PhotosLoadingService()
+    private var photos: PhotosResponse?
+    let pinchGesture = UIPanGestureRecognizer(target: DetailedViewController.self, action: #selector(DetailedViewController.pinchGesture(sender:)))
+    
     
     init(detailPhotos: PhotosItems) {
         self.detailPhotos = detailPhotos
@@ -26,9 +30,18 @@ class DetailedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updataDate()
+        reloadImage()
         reloadData()
+        setupCollectionView()
         setupImageView()
+        setupButtonShare()
+        setupButtonBack()
         view.backgroundColor = .white
+        
+    }
+    @objc func pinchGesture(sender: UIPinchGestureRecognizer) {
+        sender.view!.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
+        sender.scale = 1
     }
     
     private func setupCollectionView() {
@@ -37,7 +50,10 @@ class DetailedViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         let saveArea = view.safeAreaLayoutGuide
-//        collectionView.delegate = self
+        imageView.addGestureRecognizer(pinchGesture)
+        
+        collectionView.dataSource = self
+        collectionView.register(DeteiledCell.self, forCellWithReuseIdentifier: DeteiledCell.reusedId)
         
         [collectionView.heightAnchor.constraint(equalToConstant: 54),
          collectionView.leftAnchor.constraint(equalTo: saveArea.leftAnchor),
@@ -50,19 +66,19 @@ class DetailedViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         let safeArea = view.safeAreaLayoutGuide
         imageView.contentMode = .scaleAspectFit
-
+        imageView.isUserInteractionEnabled = true
+        
         [imageView.topAnchor.constraint(equalTo: view.topAnchor),
          imageView.leftAnchor.constraint(equalTo: safeArea.leftAnchor),
          imageView.rightAnchor.constraint(equalTo: safeArea.rightAnchor),
-         imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)].forEach{ $0.isActive = true }
+         imageView.bottomAnchor.constraint(equalTo: collectionView.topAnchor)].forEach{ $0.isActive = true }
     }
     
     private func setupFlowLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = UICollectionViewFlowLayout.automaticSize
+        layout.itemSize = .init(width: 54, height: 54)
         layout.minimumLineSpacing = 2
-        layout.minimumInteritemSpacing = 0
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.scrollDirection = .horizontal
         return layout
     }
     
@@ -76,7 +92,23 @@ class DetailedViewController: UIViewController {
         title = strDate
     }
     func reloadData() {
-        
+        let url = PhotosLoadingService().getUrl(path: API.photos)
+        guard  let url else { return }
+        photosLoadingService.fetchJson(url: url) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case let .success(items):
+                self.photos = items
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            case .failure:
+                break
+            }
+        }
+    }
+    
+    func reloadImage() {
         let urlString = detailPhotos.sizes.first(where: { $0.type == "w"})?.url
         guard let urlString else { return }
         let url = URL(string: urlString)
@@ -86,10 +118,51 @@ class DetailedViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.imageView.image = success.image
                 }
-            case .failure(let failure):
+            case .failure(_):
                 break
             }
         }
     }
+    
+    private func setupButtonShare() {
+        let buttonShare = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(onShareTap))
+        navigationItem.rightBarButtonItem = buttonShare
+        buttonShare.tintColor = .black
+    }
+    
+    private func setupButtonBack() {
+        let buttonBack = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(onBackTap))
+        navigationItem.leftBarButtonItem = buttonBack
+        buttonBack.tintColor = .black
+    }
+    
+    @objc private func onBackTap() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func onShareTap() {
+        guard let image = imageView.image?.pngData() else { return }
+        let text:[Any] = [UIImage(data: image) as Any]
+        let share = UIActivityViewController(activityItems: text, applicationActivities: nil)
+        navigationController?.present(share, animated: true)
+    }
 }
 
+extension DetailedViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let count = photos?.count else { return 0 }
+        return count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DeteiledCell.reusedId, for: indexPath) as? DeteiledCell else { return UICollectionViewCell()
+        }
+        let infoImage = photos?.items[indexPath.item].sizes.first(where: {$0.type == "m"})?.url
+        cell.urlString = infoImage
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    }
+    
+    
+}

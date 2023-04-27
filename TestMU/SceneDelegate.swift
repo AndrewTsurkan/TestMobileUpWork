@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthSetviceDelegete {
         let window = UIWindow(windowScene: windowScene)
         authService = AuthService()
         authService.delagate = self
-        window.rootViewController = StartViewController()
+        window.rootViewController = UINavigationController(rootViewController:StartViewController())
         window.makeKeyAndVisible()
         self.window = window
     }
@@ -44,6 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthSetviceDelegete {
         let galleryVC = GalleryViewController()
         let navVC = UINavigationController(rootViewController: galleryVC)
         window?.rootViewController = navVC
+//        UINavigationController?.pushViewController(galleryVC, animated: true)
         print(#function)
     }
     

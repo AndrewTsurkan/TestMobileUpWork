@@ -1,14 +1,14 @@
 //
-//  PhotoCell.swift
+//  DeteiledCell.swift
 //  TestMU
 //
-//  Created by Андрей Цуркан on 22.04.2023.
+//  Created by Андрей Цуркан on 27.04.2023.
 //
 
 import UIKit
 import Nuke
 
-class PhotoCell: UICollectionViewCell {
+class DeteiledCell: UICollectionViewCell {
     
     let imageView = UIImageView()
     static var reusedId = "InstallCell"
@@ -17,7 +17,7 @@ class PhotoCell: UICollectionViewCell {
             reloadData()
         }
     }
- 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupImageView()
@@ -31,9 +31,6 @@ class PhotoCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleToFill
-        imageView.addText("скоро буду")
-        imageView.removeAll()
-
         
         self.clipsToBounds = true
         
@@ -42,7 +39,7 @@ class PhotoCell: UICollectionViewCell {
          imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
          imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)].forEach{ $0.isActive = true }
     }
-
+    
     func reloadData() {
         guard let urlString, let url = URL(string: urlString) else { return }
         
@@ -55,20 +52,6 @@ class PhotoCell: UICollectionViewCell {
             case .failure(let failure):
                 break
             }
-        }
-    }
-}
-extension UIImageView {
-    func addText(_ text: String) {
-        let lblText = UILabel(frame: self.bounds)
-        lblText.text = text
-        lblText.textAlignment = .center
-        self.addSubview(lblText)
-    }
-
-    func removeAll() {
-        for v in self.subviews { //удаляет все, если что-то другое добавили, проверять что v это UILabel
-            v.removeFromSuperview()
         }
     }
 }
