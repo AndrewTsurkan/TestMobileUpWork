@@ -67,7 +67,7 @@ extension UIImageView {
     }
 
     func removeAll() {
-        for v in self.subviews { //удаляет все, если что-то другое добавили, проверять что v это UILabel
+        for v in self.subviews {
             v.removeFromSuperview()
         }
     }
