@@ -15,7 +15,7 @@ class DetailedViewController: UIViewController {
     var detailPhotos: PhotosItems
     private var photosLoadingService = PhotosLoadingService()
     private var photos: PhotosResponse?
-//    let pinchGesture = UIPanGestureRecognizer(target: DetailedViewController.self, action: #selector(DetailedViewController.pinchGesture(sender:)))
+    //    let pinchGesture = UIPanGestureRecognizer(target: DetailedViewController.self, action: #selector(DetailedViewController.pinchGesture(sender:)))
     
     
     init(detailPhotos: PhotosItems) {
@@ -37,14 +37,13 @@ class DetailedViewController: UIViewController {
         setupButtonShare()
         setupButtonBack()
         view.backgroundColor = UIColor(named: "colorSetDark")
-
-        
     }
+    
     // Моя попытка сделать приближение
-//    @objc func pinchGesture(sender: UIPinchGestureRecognizer) {
-//        sender.view!.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
-//        sender.scale = 1
-//    }
+    //    @objc func pinchGesture(sender: UIPinchGestureRecognizer) {
+    //        sender.view!.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
+    //        sender.scale = 1
+    //    }
     
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: setupFlowLayout())
@@ -52,7 +51,7 @@ class DetailedViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         let saveArea = view.safeAreaLayoutGuide
-//        imageView.addGestureRecognizer(pinchGesture)
+        //        imageView.addGestureRecognizer(pinchGesture)
         
         collectionView.dataSource = self
         collectionView.register(DeteiledCell.self, forCellWithReuseIdentifier: DeteiledCell.reusedId)
@@ -78,9 +77,11 @@ class DetailedViewController: UIViewController {
     
     private func setupFlowLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
+        
         layout.itemSize = .init(width: 54, height: 54)
         layout.minimumLineSpacing = 2
         layout.scrollDirection = .horizontal
+        
         return layout
     }
     
@@ -93,6 +94,7 @@ class DetailedViewController: UIViewController {
         let strDate = dateFormatter.string(from: date)
         title = strDate
     }
+    
     private func reloadData() {
         let url = PhotosLoadingService().getUrl(path: API.photos)
         guard  let url else { return }
@@ -110,7 +112,7 @@ class DetailedViewController: UIViewController {
         }
     }
     
-     private func reloadImage() {
+    private func reloadImage() {
         let urlString = detailPhotos.sizes.first(where: { $0.type == "z"})?.url
         guard let urlString else { return }
         let url = URL(string: urlString)
@@ -163,9 +165,8 @@ extension DetailedViewController: UICollectionViewDelegate, UICollectionViewData
         cell.urlString = infoImage
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        navigationController?.popViewController(animated: true)
     }
-    
-    
 }

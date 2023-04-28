@@ -86,7 +86,7 @@ class GalleryViewController: UIViewController {
     }
 }
 
-extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate  {
+extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let count = photos?.count else { return 0 }
         return count

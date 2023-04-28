@@ -37,6 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthSetviceDelegete {
     
     func authServiceShouldShow(viewController: UIViewController) {
         print(#function)
+        viewController.modalPresentationStyle = .automatic
         window?.rootViewController?.present(viewController, animated: true)
     }
     
