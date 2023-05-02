@@ -123,6 +123,10 @@ class DetailedViewController: UIViewController {
                     self?.imageView.image = success.image
                 }
             case .failure(_):
+                let fail = UIAlertController(title: "Не удалось загрузить фото", message: nil, preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "OK", style: .default)
+                fail.addAction(okButton)
+                self?.navigationController?.pushViewController(fail, animated: true)
                 break
             }
         }
@@ -167,6 +171,7 @@ extension DetailedViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.popViewController(animated: true)
+        let starVC = StartViewController()
+        navigationController?.pushViewController(starVC, animated: true)
     }
 }

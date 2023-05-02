@@ -49,7 +49,11 @@ class DeteiledCell: UICollectionViewCell {
                 DispatchQueue.main.async {
                     self?.imageView.image = success.image
                 }
-            case .failure(let failure):
+            case .failure(_):
+                let fail = UIAlertController(title: "Не удалось загрузить фото", message: nil, preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "OK", style: .default)
+                fail.addAction(okButton)
+                self?.window?.rootViewController?.navigationController?.pushViewController(fail, animated: true)
                 break
             }
         }

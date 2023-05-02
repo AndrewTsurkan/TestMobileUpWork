@@ -30,7 +30,7 @@ class PhotoCell: UICollectionViewCell {
     private func setupImageView() {
         contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.addText("скоро буду")
         imageView.removeAll()
 
@@ -52,8 +52,11 @@ class PhotoCell: UICollectionViewCell {
                 DispatchQueue.main.async {
                     self?.imageView.image = success.image
                 }
-            case .failure(let failure):
-                break
+            case .failure(_):
+                let fail = UIAlertController(title: "Не удалось загрузить фото", message: nil, preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "OK", style: .default)
+                fail.addAction(okButton)
+                self?.window?.rootViewController?.navigationController?.pushViewController(fail, animated: true)
             }
         }
     }
