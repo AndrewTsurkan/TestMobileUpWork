@@ -46,7 +46,7 @@ class StartViewController: UIViewController {
         enterButton.translatesAutoresizingMaskIntoConstraints = false
         
         enterButton.setTitle("Вход через VK", for: .normal)
-        enterButton.titleLabel?.font = UIFont(name: "SFProText-Bold", size: 15)
+        enterButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         enterButton.backgroundColor = UIColor(named: "colorSetLight")
         enterButton.layer.cornerRadius = 12
         enterButton.setTitleColor(UIColor(named: "colorSetDark"), for: .normal)
